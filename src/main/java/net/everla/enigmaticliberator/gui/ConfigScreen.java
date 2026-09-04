@@ -11,6 +11,7 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.everla.enigmaticliberator.network.ConfigNetwork;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -169,6 +170,10 @@ public class ConfigScreen extends Screen {
         this.init();
     }
 
+    public void refreshFromNetwork() {
+        rebuildAndInit();
+    }
+
     private void rebuildConfigEntries() {
         List<ConfigEntry> entries = getCurrentCategoryEntries();
 
@@ -204,8 +209,7 @@ public class ConfigScreen extends Screen {
                     Component.literal((boolValue.get() ? "§aON" : "§cOFF")),
                     btn -> {
                         if (canModify) {
-                            boolValue.set(!boolValue.get());
-                            entry.spec.save();
+                            ConfigNetwork.updateFromScreen(entry.value, String.valueOf(!boolValue.get()), isMultiplayer());
                             rebuildAndInit();
                         }
                     })
@@ -219,8 +223,7 @@ public class ConfigScreen extends Screen {
                     Component.literal("⟲"),
                     btn -> {
                         if (canModify) {
-                            boolValue.set((Boolean) entry.defaultValue);
-                            entry.spec.save();
+                            ConfigNetwork.updateFromScreen(entry.value, String.valueOf(entry.defaultValue), isMultiplayer());
                             rebuildAndInit();
                         }
                     })
@@ -254,13 +257,11 @@ public class ConfigScreen extends Screen {
                         if (entry.type == ConfigEntry.Type.INTEGER) {
                             int value = Integer.parseInt(text);
                             ForgeConfigSpec.IntValue intValue = (ForgeConfigSpec.IntValue) entry.value;
-                            intValue.set(value);
-                            entry.spec.save();
+                            ConfigNetwork.updateFromScreen(entry.value, String.valueOf(value), isMultiplayer());
                         } else {
                             double value = Double.parseDouble(text);
                             ForgeConfigSpec.DoubleValue doubleValue = (ForgeConfigSpec.DoubleValue) entry.value;
-                            doubleValue.set(value);
-                            entry.spec.save();
+                            ConfigNetwork.updateFromScreen(entry.value, String.valueOf(value), isMultiplayer());
                         }
                     } catch (NumberFormatException e) {
                         // Invalid number, ignore
@@ -277,12 +278,11 @@ public class ConfigScreen extends Screen {
                         if (canModify) {
                             if (entry.type == ConfigEntry.Type.INTEGER) {
                                 ForgeConfigSpec.IntValue intValue = (ForgeConfigSpec.IntValue) entry.value;
-                                intValue.set((Integer) entry.defaultValue);
+                                ConfigNetwork.updateFromScreen(entry.value, String.valueOf(entry.defaultValue), isMultiplayer());
                             } else {
                                 ForgeConfigSpec.DoubleValue doubleValue = (ForgeConfigSpec.DoubleValue) entry.value;
-                                doubleValue.set((Double) entry.defaultValue);
+                                ConfigNetwork.updateFromScreen(entry.value, String.valueOf(entry.defaultValue), isMultiplayer());
                             }
-                            entry.spec.save();
                             rebuildAndInit();
                         }
                     })

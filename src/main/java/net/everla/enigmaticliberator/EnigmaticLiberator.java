@@ -10,13 +10,22 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import org.slf4j.Logger;
 
 @Mod(EnigmaticLiberator.MODID)
 public class EnigmaticLiberator {
     public static final String MODID = "enigmatic_liberator";
     private static final Logger LOGGER = LogUtils.getLogger();
+
+    public static ResourceLocation id(String path) {
+        return new ResourceLocation(MODID, path);
+    }
 
     @SuppressWarnings("removal")  // These APIs are deprecated but still functional in Forge 1.20.1
     public EnigmaticLiberator() {
@@ -29,11 +38,30 @@ public class EnigmaticLiberator {
 
         // Register setup
         modEventBus.addListener(this::setup);
+        net.everla.enigmaticliberator.network.ConfigNetwork.register();
 
         LOGGER.info("==================================================");
         LOGGER.info("EnigmaticLiberator initialized!");
         LOGGER.info("Making the Cursed Ring fully configurable...");
         LOGGER.info("==================================================");
+    }
+
+    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.FORGE)
+    public static final class NetworkEvents {
+        @SubscribeEvent
+        public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
+            if (event.getEntity() instanceof net.minecraft.server.level.ServerPlayer player) {
+                net.everla.enigmaticliberator.network.ConfigNetwork.sync(player);
+            }
+        }
+
+        @SubscribeEvent
+        public static void onConfigReload(ModConfigEvent.Reloading event) {
+            if (event.getConfig().getType() == ModConfig.Type.COMMON
+                    && net.minecraftforge.server.ServerLifecycleHooks.getCurrentServer() != null) {
+                net.everla.enigmaticliberator.network.ConfigNetwork.syncAll();
+            }
+        }
     }
 
     private void setup(final FMLCommonSetupEvent event) {
