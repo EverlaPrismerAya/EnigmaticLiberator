@@ -155,6 +155,9 @@ dependencies {
     implementation fg.deobf("blank:curios-forge:5.14.1")
     implementation fg.deobf("blank:Patchouli:1.20.1-85")
 
+    // JEI for development environment only (not packaged into mod)
+    runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:${jei_version}")
+
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
