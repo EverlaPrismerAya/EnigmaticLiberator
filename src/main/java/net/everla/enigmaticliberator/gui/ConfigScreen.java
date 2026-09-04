@@ -346,7 +346,13 @@ public class ConfigScreen extends Screen {
 
                 entries.add(new ConfigEntry("Special Drops", BlessingConfig.SPECIAL_DROPS_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables special drops from vanilla mobs", null));
                 entries.add(new ConfigEntry("Ender Ring", BlessingConfig.ENDER_RING_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Grants access to Ender Ring abilities", null));
-                entries.add(new ConfigEntry("Abyssal Artifacts", BlessingConfig.ABYSSAL_ARTIFACTS_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Grants access to Abyssal Artifacts", null));
+                entries.add(new ConfigEntry("Abyssal Heart", BlessingConfig.ABYSSAL_HEART_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables Abyssal Heart effects", null));
+                entries.add(new ConfigEntry("Eldritch Pan", BlessingConfig.ELDRITCH_PAN_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables Eldritch Pan usage", null));
+                entries.add(new ConfigEntry("Eldritch Amulet", BlessingConfig.ELDRITCH_AMULET_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables Eldritch Amulet effects", null));
+                entries.add(new ConfigEntry("The Infinitum", BlessingConfig.THE_INFINITUM_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables The Infinitum attacks", null));
+                entries.add(new ConfigEntry("Desolation Ring", BlessingConfig.DESOLATION_RING_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables Desolation Ring binding", null));
+                entries.add(new ConfigEntry("Violence Scroll", BlessingConfig.VIOLENCE_SCROLL_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables Violence Scroll effects", null));
+                entries.add(new ConfigEntry("Chaos Elytra", BlessingConfig.CHAOS_ELYTRA_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables Chaos Elytra special effects", null));
                 break;
 
             case EXTRA:

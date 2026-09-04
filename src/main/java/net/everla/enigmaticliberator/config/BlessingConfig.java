@@ -30,8 +30,13 @@ public class BlessingConfig {
     public static final ForgeConfigSpec.BooleanValue ENDER_RING_ENABLED;
 
     // Blessing 7 - Abyssal Artifacts
-    public static final ForgeConfigSpec.BooleanValue ABYSSAL_ARTIFACTS_ENABLED;
-    public static final ForgeConfigSpec.DoubleValue ABYSSAL_REQUIRED_TIME_FRACTION;
+    public static final ForgeConfigSpec.BooleanValue ABYSSAL_HEART_ENABLED;
+    public static final ForgeConfigSpec.BooleanValue ELDRITCH_PAN_ENABLED;
+    public static final ForgeConfigSpec.BooleanValue ELDRITCH_AMULET_ENABLED;
+    public static final ForgeConfigSpec.BooleanValue THE_INFINITUM_ENABLED;
+    public static final ForgeConfigSpec.BooleanValue DESOLATION_RING_ENABLED;
+    public static final ForgeConfigSpec.BooleanValue VIOLENCE_SCROLL_ENABLED;
+    public static final ForgeConfigSpec.BooleanValue CHAOS_ELYTRA_ENABLED;
 
     static {
         BUILDER.push("Blessings Configuration");
@@ -108,15 +113,44 @@ public class BlessingConfig {
 
         // Abyssal Artifacts
         BUILDER.push("blessing_7_abyssal_artifacts");
-        ABYSSAL_ARTIFACTS_ENABLED = BUILDER
-            .comment("Enable or disable Abyssal Artifacts access")
-            .comment("When enabled, allows crafting and using Abyssal Artifacts after meeting time requirement")
-            .define("enabled", true);
-        ABYSSAL_REQUIRED_TIME_FRACTION = BUILDER
-            .comment("Fraction of total playtime required with Seven Curses to access Abyssal Artifacts")
-            .comment("0.995 = 99.5% of playtime, 0.5 = 50% of playtime, 1.0 = 100% of playtime")
-            .comment("Set to 0.0 to allow immediate access")
-            .defineInRange("required_curse_time_fraction", 0.995, 0.0, 1.0);
+        BUILDER.comment("Configure individual Abyssal Artifacts from Enigmatic Legacy and EnigmaticAddons");
+        BUILDER.comment("When disabled, the corresponding item loses its special effects");
+
+        ABYSSAL_HEART_ENABLED = BUILDER
+            .comment("Enable or disable Abyssal Heart")
+            .comment("When disabled, Abyssal Heart will not provide any benefits")
+            .define("abyssal_heart_enabled", true);
+
+        ELDRITCH_PAN_ENABLED = BUILDER
+            .comment("Enable or disable Eldritch Pan")
+            .comment("When disabled, Eldritch Pan cannot be used for attacking or blocking")
+            .define("eldritch_pan_enabled", true);
+
+        ELDRITCH_AMULET_ENABLED = BUILDER
+            .comment("Enable or disable Eldritch Amulet")
+            .comment("When disabled, Eldritch Amulet cannot be equipped and loses all effects")
+            .define("eldritch_amulet_enabled", true);
+
+        THE_INFINITUM_ENABLED = BUILDER
+            .comment("Enable or disable The Infinitum")
+            .comment("When disabled, The Infinitum cannot be used for attacking")
+            .define("the_infinitum_enabled", true);
+
+        DESOLATION_RING_ENABLED = BUILDER
+            .comment("Enable or disable Desolation Ring")
+            .comment("When disabled, Desolation Ring loses its binding and all effects")
+            .define("desolation_ring_enabled", true);
+
+        VIOLENCE_SCROLL_ENABLED = BUILDER
+            .comment("Enable or disable Violence Scroll")
+            .comment("When disabled, Violence Scroll loses all its functions")
+            .define("violence_scroll_enabled", true);
+
+        CHAOS_ELYTRA_ENABLED = BUILDER
+            .comment("Enable or disable Chaos Elytra special effects")
+            .comment("When disabled, Chaos Elytra functions as a normal elytra only")
+            .define("chaos_elytra_enabled", true);
+
         BUILDER.pop();
 
         BUILDER.pop();

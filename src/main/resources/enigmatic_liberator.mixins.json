@@ -9,7 +9,13 @@
     "MixinCursedRing",
     "MixinEnigmaticEventHandler",
     "MixinPacketEnderRingKey",
-    "MixinSuperpositionHandler"
+    "MixinAbyssalHeart",
+    "MixinEldritchPan",
+    "MixinEldritchAmulet",
+    "MixinTheInfinitum",
+    "MixinDesolationRing",
+    "MixinViolenceScroll",
+    "MixinChaosElytra"
   ],
   "client": [
     "MixinCursedRingTooltip"

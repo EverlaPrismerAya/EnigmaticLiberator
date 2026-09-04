@@ -119,6 +119,16 @@ repositories {
     // Put repositories for dependencies here
     // ForgeGradle automatically adds the Forge maven and Maven Central for you
 
+    // Maven repository for JEI
+    maven {
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven {
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+    }
+
     // If you have mod jar dependencies in ./libs, you can declare them as a repository like so.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
     flatDir {
@@ -137,26 +147,19 @@ dependencies {
     // Mixin annotation processor
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
-    // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
-    // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
-    // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
-    // runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
+    // JEI - from Maven for development environment only (not packaged into mod)
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
 
-    // Example mod dependency using a mod jar from ./libs with a flat dir repository
-    // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
-    // The group id is ignored when searching -- in this case, it is "blank"
-    // implementation fg.deobf("blank:coolmod-${mc_version}:${coolmod_version}")
-
-    // Libs mod dependencies - mapped to official mappings via fg.deobf()
+    // Local mod dependencies must be remapped from SRG names to the development mappings.
+    // Keeping them as flatDir coordinates also makes the dependency set reproducible for
+    // other developers and avoids embedding machine-specific absolute paths.
     implementation fg.deobf("blank:EnigmaticLegacy:2.30.1")
     implementation fg.deobf("blank:enigmaticaddons:1.2.6")
     implementation fg.deobf("blank:caelus-forge:3.2.0")
     implementation fg.deobf("blank:curios-forge:5.14.1")
     implementation fg.deobf("blank:Patchouli:1.20.1-85")
-
-    // JEI for development environment only (not packaged into mod)
-    runtimeOnly fg.deobf("mezz.jei:jei-1.20.1-forge:${jei_version}")
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html

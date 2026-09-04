@@ -213,13 +213,62 @@ public abstract class MixinEnigmaticEventHandler {
      */
     @Inject(
         method = "onLivingDeath",
-        at = @At(value = "INVOKE",
-                 target = "Lcom/aizistral/omniconfig/wrappers/Omniconfig$BooleanParameter;getValue()Ljava/lang/Boolean;",
-                 ordinal = 0),
+        at = @At("HEAD"),
         cancellable = true,
         remap = false
     )
     private void cancelSpecialDrops(LivingDeathEvent event, CallbackInfo ci) {
+        // If special drops are disabled in our config, cancel the event handler early
+        if (!BlessingConfig.SPECIAL_DROPS_ENABLED.get()) {
+            ci.cancel();
+        }
+    }
+
+    /**
+     * BLESSING 5: Special Drops - Low Priority Handler
+     * Also cancel the low priority death handler for special drops
+     */
+    @Inject(
+        method = "onDeathLow",
+        at = @At("HEAD"),
+        cancellable = true,
+        remap = false
+    )
+    private void cancelSpecialDropsLow(LivingDeathEvent event, CallbackInfo ci) {
+        // If special drops are disabled in our config, cancel the event handler early
+        if (!BlessingConfig.SPECIAL_DROPS_ENABLED.get()) {
+            ci.cancel();
+        }
+    }
+
+    /**
+     * BLESSING 5: Special Drops - Living Drops Handler
+     * Cancel the living drops handler for special drops like evil_essence
+     */
+    @Inject(
+        method = "onLivingDrops",
+        at = @At("HEAD"),
+        cancellable = true,
+        remap = false
+    )
+    private void cancelLivingDrops(net.minecraftforge.event.entity.living.LivingDropsEvent event, CallbackInfo ci) {
+        // If special drops are disabled in our config, cancel the event handler early
+        if (!BlessingConfig.SPECIAL_DROPS_ENABLED.get()) {
+            ci.cancel();
+        }
+    }
+
+    /**
+     * BLESSING 5: Special Drops - Lowest Priority Handler
+     * Cancel the lowest priority drops handler for special drops
+     */
+    @Inject(
+        method = "onLivingDropsLowest",
+        at = @At("HEAD"),
+        cancellable = true,
+        remap = false
+    )
+    private void cancelLivingDropsLowest(net.minecraftforge.event.entity.living.LivingDropsEvent event, CallbackInfo ci) {
         // If special drops are disabled in our config, cancel the event handler early
         if (!BlessingConfig.SPECIAL_DROPS_ENABLED.get()) {
             ci.cancel();
