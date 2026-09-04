@@ -333,26 +333,20 @@ public class ConfigScreen extends Screen {
 
             case BLESSINGS:
                 entries.add(new ConfigEntry("Looting Blessing", BlessingConfig.LOOTING_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Grants Looting enchantment bonus", null));
-                entries.add(new ConfigEntry("  Looting Levels", BlessingConfig.LOOTING_BONUS_LEVELS, BlessingConfig.SPEC, ConfigEntry.Type.INTEGER, 2, "Additional Looting enchantment levels", "Range: 0 - 10"));
+                entries.add(new ConfigEntry("  Looting Levels", BlessingConfig.LOOTING_BONUS_LEVELS, BlessingConfig.SPEC, ConfigEntry.Type.INTEGER, 1, "Additional Looting enchantment levels", "Range: 0 - 10"));
 
                 entries.add(new ConfigEntry("Fortune Blessing", BlessingConfig.FORTUNE_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Grants Fortune enchantment bonus", null));
-                entries.add(new ConfigEntry("  Fortune Levels", BlessingConfig.FORTUNE_BONUS_LEVELS, BlessingConfig.SPEC, ConfigEntry.Type.INTEGER, 2, "Additional Fortune enchantment levels", "Range: 0 - 10"));
+                entries.add(new ConfigEntry("  Fortune Levels", BlessingConfig.FORTUNE_BONUS_LEVELS, BlessingConfig.SPEC, ConfigEntry.Type.INTEGER, 1, "Additional Fortune enchantment levels", "Range: 0 - 10"));
 
                 entries.add(new ConfigEntry("Experience Blessing", BlessingConfig.EXPERIENCE_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Multiplies experience gained", null));
-                entries.add(new ConfigEntry("  Experience Multiplier", BlessingConfig.EXPERIENCE_MULTIPLIER, BlessingConfig.SPEC, ConfigEntry.Type.DOUBLE, 1.0, "Multiplier for experience drops", "Range: 0.0 - 10.0"));
+                entries.add(new ConfigEntry("  Experience Multiplier", BlessingConfig.EXPERIENCE_MULTIPLIER, BlessingConfig.SPEC, ConfigEntry.Type.DOUBLE, 4.0, "Multiplier for experience drops", "Range: 1.0 - 20.0"));
 
                 entries.add(new ConfigEntry("Enchanting Blessing", BlessingConfig.ENCHANTING_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Increases enchantment table power", null));
-                entries.add(new ConfigEntry("  Enchanting Power", BlessingConfig.ENCHANTING_BONUS_POWER, BlessingConfig.SPEC, ConfigEntry.Type.INTEGER, 5, "Additional enchantment power bonus", "Range: 0 - 15"));
+                entries.add(new ConfigEntry("  Enchanting Power", BlessingConfig.ENCHANTING_BONUS_POWER, BlessingConfig.SPEC, ConfigEntry.Type.INTEGER, 10, "Additional enchantment power bonus", "Range: 0 - 50"));
 
                 entries.add(new ConfigEntry("Special Drops", BlessingConfig.SPECIAL_DROPS_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables special drops from vanilla mobs", null));
                 entries.add(new ConfigEntry("Ender Ring", BlessingConfig.ENDER_RING_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Grants access to Ender Ring abilities", null));
-                entries.add(new ConfigEntry("Abyssal Heart", BlessingConfig.ABYSSAL_HEART_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables Abyssal Heart effects", null));
-                entries.add(new ConfigEntry("Eldritch Pan", BlessingConfig.ELDRITCH_PAN_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables Eldritch Pan usage", null));
-                entries.add(new ConfigEntry("Eldritch Amulet", BlessingConfig.ELDRITCH_AMULET_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables Eldritch Amulet effects", null));
-                entries.add(new ConfigEntry("The Infinitum", BlessingConfig.THE_INFINITUM_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables The Infinitum attacks", null));
-                entries.add(new ConfigEntry("Desolation Ring", BlessingConfig.DESOLATION_RING_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables Desolation Ring binding", null));
-                entries.add(new ConfigEntry("Violence Scroll", BlessingConfig.VIOLENCE_SCROLL_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables Violence Scroll effects", null));
-                entries.add(new ConfigEntry("Chaos Elytra", BlessingConfig.CHAOS_ELYTRA_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables Chaos Elytra special effects", null));
+                entries.add(new ConfigEntry("Unique Relics", BlessingConfig.UNIQUE_RELICS_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables crafting and use of all unique abyssal relics", null));
                 break;
 
             case EXTRA:

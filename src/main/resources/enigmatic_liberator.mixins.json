@@ -8,17 +8,14 @@
   "mixins": [
     "MixinCursedRing",
     "MixinEnigmaticEventHandler",
+    "MixinSuperpositionHandler",
+    "MixinResultSlot",
     "MixinPacketEnderRingKey",
-    "MixinAbyssalHeart",
-    "MixinEldritchPan",
-    "MixinEldritchAmulet",
-    "MixinTheInfinitum",
-    "MixinDesolationRing",
-    "MixinViolenceScroll",
-    "MixinChaosElytra"
+    "MixinDesolationRing"
   ],
   "client": [
-    "MixinCursedRingTooltip"
+    "MixinCursedRingTooltip",
+    "MixinEnderChestInventoryButton"
   ],
   "injectors": {
     "defaultRequire": 1

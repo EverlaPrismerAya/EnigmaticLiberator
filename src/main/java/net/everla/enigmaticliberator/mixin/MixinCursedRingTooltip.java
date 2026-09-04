@@ -56,14 +56,7 @@ public abstract class MixinCursedRingTooltip {
             if (!BlessingConfig.ENCHANTING_ENABLED.get()) disabledBlessings++;
             if (!BlessingConfig.SPECIAL_DROPS_ENABLED.get()) disabledBlessings++;
             if (!BlessingConfig.ENDER_RING_ENABLED.get()) disabledBlessings++;
-            // Count Abyssal artifacts as one blessing - disabled if all are disabled
-            if (!BlessingConfig.ABYSSAL_HEART_ENABLED.get() &&
-                !BlessingConfig.ELDRITCH_PAN_ENABLED.get() &&
-                !BlessingConfig.ELDRITCH_AMULET_ENABLED.get() &&
-                !BlessingConfig.THE_INFINITUM_ENABLED.get() &&
-                !BlessingConfig.DESOLATION_RING_ENABLED.get() &&
-                !BlessingConfig.VIOLENCE_SCROLL_ENABLED.get() &&
-                !BlessingConfig.CHAOS_ELYTRA_ENABLED.get()) {
+            if (!BlessingConfig.UNIQUE_RELICS_ENABLED.get()) {
                 disabledBlessings++;
             }
 
@@ -195,41 +188,11 @@ public abstract class MixinCursedRingTooltip {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.blessing6.disabled");
             }
 
-            // Blessing 7 - Abyssal Artifacts
-            boolean anyAbyssalEnabled = BlessingConfig.ABYSSAL_HEART_ENABLED.get() ||
-                                       BlessingConfig.ELDRITCH_PAN_ENABLED.get() ||
-                                       BlessingConfig.ELDRITCH_AMULET_ENABLED.get() ||
-                                       BlessingConfig.THE_INFINITUM_ENABLED.get() ||
-                                       BlessingConfig.DESOLATION_RING_ENABLED.get() ||
-                                       BlessingConfig.VIOLENCE_SCROLL_ENABLED.get() ||
-                                       BlessingConfig.CHAOS_ELYTRA_ENABLED.get();
-
-            if (anyAbyssalEnabled) {
-                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.blessing7");
-                // Show individual status
-                if (!BlessingConfig.ABYSSAL_HEART_ENABLED.get()) {
-                    list.add(Component.literal("  §7- Abyssal Heart: §cDisabled"));
-                }
-                if (!BlessingConfig.ELDRITCH_PAN_ENABLED.get()) {
-                    list.add(Component.literal("  §7- Eldritch Pan: §cDisabled"));
-                }
-                if (!BlessingConfig.ELDRITCH_AMULET_ENABLED.get()) {
-                    list.add(Component.literal("  §7- Eldritch Amulet: §cDisabled"));
-                }
-                if (!BlessingConfig.THE_INFINITUM_ENABLED.get()) {
-                    list.add(Component.literal("  §7- The Infinitum: §cDisabled"));
-                }
-                if (!BlessingConfig.DESOLATION_RING_ENABLED.get()) {
-                    list.add(Component.literal("  §7- Desolation Ring: §cDisabled"));
-                }
-                if (!BlessingConfig.VIOLENCE_SCROLL_ENABLED.get()) {
-                    list.add(Component.literal("  §7- Violence Scroll: §cDisabled"));
-                }
-                if (!BlessingConfig.CHAOS_ELYTRA_ENABLED.get()) {
-                    list.add(Component.literal("  §7- Chaos Elytra: §cDisabled"));
-                }
-            } else {
-                ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.blessing7.disabled");
+             // Blessing 7 - Unique Relics
+             if (BlessingConfig.UNIQUE_RELICS_ENABLED.get()) {
+                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.blessing7");
+             } else {
+                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.blessing7.disabled");
             }
 
         } else {
@@ -247,9 +210,7 @@ public abstract class MixinCursedRingTooltip {
                                 BlessingConfig.ENCHANTING_ENABLED.get() ||
                                 BlessingConfig.SPECIAL_DROPS_ENABLED.get() ||
                                 BlessingConfig.ENDER_RING_ENABLED.get() ||
-                                BlessingConfig.ABYSSAL_HEART_ENABLED.get() ||
-                                BlessingConfig.ELDRITCH_PAN_ENABLED.get() ||
-                                BlessingConfig.ELDRITCH_AMULET_ENABLED.get();
+                                BlessingConfig.UNIQUE_RELICS_ENABLED.get();
 
             if (anyEnabled) {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.lore1");
