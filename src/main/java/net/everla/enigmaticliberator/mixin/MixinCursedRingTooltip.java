@@ -26,9 +26,9 @@ import java.util.List;
 public abstract class MixinCursedRingTooltip {
 
     /**
-     * Override appendHoverText to completely control tooltip rendering with localization
+     * The dependency is loaded with SRG names in both ForgeGradle and production runtime.
      */
-    @Inject(method = "appendHoverText", at = @At("HEAD"), cancellable = true, remap = false)
+    @Inject(method = "m_7373_", at = @At("HEAD"), cancellable = true, remap = false)
     public void overrideTooltip(ItemStack stack, @Nullable Level worldIn, List<Component> list,
                                  TooltipFlag flagIn, CallbackInfo ci) {
         // Cancel original tooltip

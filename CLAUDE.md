@@ -122,6 +122,14 @@ net.everla.enigmaticliberator/
 - Check logs in `run/logs/` for mixin application status
 - If mixin fails to apply, verify target method signature matches exactly (use SRG names, not MCP)
 
+### Mixin Mapping and Distribution
+
+- This project loads local mod dependencies through `fg.deobf(...)`, but the dependency JARs and runtime classes are exposed with Forge/SRG names in the development run configuration.
+- Mixin targets that use `remap = false` must use the actual SRG method name. For Minecraft 1.20.1 item tooltips, use `m_7373_`, not `appendHoverText`.
+- A target such as `appendHoverText` with `remap = false` can appear correct in source or IDE inspection but will fail in a production Forge environment with `InvalidInjectionException` because the target method is actually `m_7373_`.
+- The final mod JAR must contain `enigmatic_liberator.mixins.json` and `enigmatic_liberator.refmap.json`, and its Manifest must contain `MixinConfigs: enigmatic_liberator.mixins.json`. The `jar` task explicitly adds this Manifest entry because its generated Manifest overrides `src/main/resources/META-INF/MANIFEST.MF`.
+- After changing Mixin targets, run `./gradlew clean build` and `./gradlew runClient`; confirm the log reports `Mixing <MixinClass> from enigmatic_liberator.mixins.json into <TargetClass>` and contains no `InvalidInjectionException` or `MixinApplyError`.
+
 ### Testing
 
 Run the client and create a test world:
