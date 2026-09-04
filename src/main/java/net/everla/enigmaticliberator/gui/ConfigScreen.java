@@ -350,7 +350,6 @@ public class ConfigScreen extends Screen {
                 break;
 
             case EXTRA:
-                entries.add(new ConfigEntry("Enable Special Drops", ExtraConfig.ENABLE_SPECIAL_DROPS, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enable ALL special drops from vanilla mobs", null));
                 entries.add(new ConfigEntry("Ultra Hardcore Mode", ExtraConfig.ULTRA_HARDCORE, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Ring equips immediately when entering new world", null));
                 entries.add(new ConfigEntry("Auto Equip", ExtraConfig.AUTO_EQUIP, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Ring equips immediately when entering inventory", null));
                 entries.add(new ConfigEntry("Enable Lore", ExtraConfig.ENABLE_LORE, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Display lore text on the ring tooltip", null));

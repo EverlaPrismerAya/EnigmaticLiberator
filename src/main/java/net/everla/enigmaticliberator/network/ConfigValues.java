@@ -49,7 +49,6 @@ public final class ConfigValues {
         add(values, "blessing.ender_ring.enabled", BlessingConfig.ENDER_RING_ENABLED.get());
         add(values, "blessing.unique_relics.enabled", BlessingConfig.UNIQUE_RELICS_ENABLED.get());
 
-        add(values, "extra.special_drops.enabled", ExtraConfig.ENABLE_SPECIAL_DROPS.get());
         add(values, "extra.ultra_hardcore", ExtraConfig.ULTRA_HARDCORE.get());
         add(values, "extra.auto_equip", ExtraConfig.AUTO_EQUIP.get());
         add(values, "extra.lore.enabled", ExtraConfig.ENABLE_LORE.get());
@@ -102,7 +101,6 @@ public final class ConfigValues {
             case "blessing.special_drops.enabled" -> BlessingConfig.SPECIAL_DROPS_ENABLED;
             case "blessing.ender_ring.enabled" -> BlessingConfig.ENDER_RING_ENABLED;
             case "blessing.unique_relics.enabled" -> BlessingConfig.UNIQUE_RELICS_ENABLED;
-            case "extra.special_drops.enabled" -> ExtraConfig.ENABLE_SPECIAL_DROPS;
             case "extra.ultra_hardcore" -> ExtraConfig.ULTRA_HARDCORE;
             case "extra.auto_equip" -> ExtraConfig.AUTO_EQUIP;
             case "extra.lore.enabled" -> ExtraConfig.ENABLE_LORE;
@@ -148,7 +146,6 @@ public final class ConfigValues {
                 case "blessing.special_drops.enabled" -> BlessingConfig.SPECIAL_DROPS_ENABLED.set(Boolean.parseBoolean(value));
                 case "blessing.ender_ring.enabled" -> BlessingConfig.ENDER_RING_ENABLED.set(Boolean.parseBoolean(value));
                 case "blessing.unique_relics.enabled" -> BlessingConfig.UNIQUE_RELICS_ENABLED.set(Boolean.parseBoolean(value));
-                case "extra.special_drops.enabled" -> ExtraConfig.ENABLE_SPECIAL_DROPS.set(Boolean.parseBoolean(value));
                 case "extra.ultra_hardcore" -> ExtraConfig.ULTRA_HARDCORE.set(Boolean.parseBoolean(value));
                 case "extra.auto_equip" -> ExtraConfig.AUTO_EQUIP.set(Boolean.parseBoolean(value));
                 case "extra.lore.enabled" -> ExtraConfig.ENABLE_LORE.set(Boolean.parseBoolean(value));

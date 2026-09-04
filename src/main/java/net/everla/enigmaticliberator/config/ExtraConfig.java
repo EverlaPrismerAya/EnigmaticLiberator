@@ -16,7 +16,6 @@ public class ExtraConfig {
 
     // Special Mechanics
     public static final ForgeConfigSpec.BooleanValue SAVE_THE_BEES;
-    public static final ForgeConfigSpec.BooleanValue ENABLE_SPECIAL_DROPS;
     public static final ForgeConfigSpec.BooleanValue ULTRA_HARDCORE;
     public static final ForgeConfigSpec.BooleanValue AUTO_EQUIP;
 
@@ -54,14 +53,6 @@ public class ExtraConfig {
             .comment("even if they can't see the player and are not angered yet.")
             .comment("Lower value = less probability of this happening.")
             .defineInRange("endermen_randomport_frequency", 1.0, 0.01, 10.0);
-        BUILDER.pop();
-
-        // Special Drops
-        BUILDER.comment("Special drops from vanilla mobs").push("special_drops");
-        ENABLE_SPECIAL_DROPS = BUILDER
-            .comment("Set to false to disable ALL special drops that can be obtained from vanilla mobs")
-            .comment("when bearing Ring of the Seven Curses.")
-            .define("enable_special_drops", true);
         BUILDER.pop();
 
         // Ring Behavior
