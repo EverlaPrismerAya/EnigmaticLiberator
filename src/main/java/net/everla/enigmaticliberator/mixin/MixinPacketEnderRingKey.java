@@ -31,9 +31,10 @@ public abstract class MixinPacketEnderRingKey {
     private static void onHandlePacket(PacketEnderRingKey msg, Supplier<NetworkEvent.Context> ctx, CallbackInfo ci) {
         // If Ender Ring blessing is disabled, check if player only has Cursed Ring
         if (!BlessingConfig.ENDER_RING_ENABLED.get()) {
-            ctx.get().enqueueWork(() -> {
-                ServerPlayer player = ctx.get().getSender();
+            NetworkEvent.Context context = ctx.get();
+            ServerPlayer player = context.getSender();
 
+            if (player != null) {
                 // Only cancel if player has Cursed Ring but NOT Ender Ring
                 // (If they have actual Ender Ring, let it work)
                 boolean hasCursedRing = SuperpositionHandler.hasCurio(player, EnigmaticItems.CURSED_RING);
@@ -41,11 +42,10 @@ public abstract class MixinPacketEnderRingKey {
 
                 if (hasCursedRing && !hasEnderRing) {
                     // Cancel the packet - don't open Ender Chest
-                    ctx.get().setPacketHandled(true);
+                    context.setPacketHandled(true);
                     ci.cancel();
-                    return;
                 }
-            });
+            }
         }
         // If blessing is enabled or player has actual Ender Ring, let original code run
     }
