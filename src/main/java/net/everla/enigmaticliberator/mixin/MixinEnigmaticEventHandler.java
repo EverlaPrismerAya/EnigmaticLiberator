@@ -6,6 +6,7 @@ import com.aizistral.enigmaticlegacy.items.CursedRing;
 import net.everla.enigmaticliberator.config.BlessingConfig;
 import net.everla.enigmaticliberator.config.CurseConfig;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
@@ -203,6 +204,25 @@ public abstract class MixinEnigmaticEventHandler {
             if (configuredBonus != originalBonus) {
                 event.setEnchantLevel(currentLevel - originalBonus + configuredBonus);
             }
+        }
+    }
+
+    /**
+     * BLESSING 5: Special Drops
+     * Cancel special drops when disabled in config
+     */
+    @Inject(
+        method = "onLivingDeath",
+        at = @At(value = "INVOKE",
+                 target = "Lcom/aizistral/omniconfig/wrappers/Omniconfig$BooleanParameter;getValue()Ljava/lang/Boolean;",
+                 ordinal = 0),
+        cancellable = true,
+        remap = false
+    )
+    private void cancelSpecialDrops(LivingDeathEvent event, CallbackInfo ci) {
+        // If special drops are disabled in our config, cancel the event handler early
+        if (!BlessingConfig.SPECIAL_DROPS_ENABLED.get()) {
+            ci.cancel();
         }
     }
 }
