@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.everla.enigmaticliberator.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "enigmatic_liberator.refmap.json",
+  "verbose": true,
+  "mixins": [
+    "MixinCursedRing",
+    "MixinEnigmaticEventHandler",
+    "MixinPacketEnderRingKey"
+  ],
+  "client": [
+    "MixinCursedRingTooltip"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
