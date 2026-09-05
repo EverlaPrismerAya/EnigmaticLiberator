@@ -115,6 +115,11 @@ net.everla.enigmaticliberator/
 4. Use config values to conditionally modify behavior
 5. First complete static verification of the source, target bytecode signatures, configuration wiring, and injection points; only then perform one necessary runtime verification with `./gradlew runClient`
 
+When choosing an implementation mechanism:
+
+- For behavior owned by or specific to Enigmatic Legacy, prefer Mixin after verifying the target class, method name, descriptor, overload, inheritance, and runtime mapping.
+- For behavior primarily owned by vanilla Minecraft or Forge, try the appropriate Forge event first. Use Mixin only when no suitable event exists or when the event cannot provide the required timing or scope.
+
 ### Debugging Mixins
 
 - Mixin refmap is generated at `build/resources/main/enigmatic_liberator.refmap.json`
@@ -128,11 +133,13 @@ net.everla.enigmaticliberator/
 - Mixin targets that use `remap = false` must use the actual SRG method name. For Minecraft 1.20.1 item tooltips, use `m_7373_`, not `appendHoverText`.
 - A target such as `appendHoverText` with `remap = false` can appear correct in source or IDE inspection but will fail in a production Forge environment with `InvalidInjectionException` because the target method is actually `m_7373_`.
 - The final mod JAR must contain `enigmatic_liberator.mixins.json` and `enigmatic_liberator.refmap.json`, and its Manifest must contain `MixinConfigs: enigmatic_liberator.mixins.json`. The `jar` task explicitly adds this Manifest entry because its generated Manifest overrides `src/main/resources/META-INF/MANIFEST.MF`.
-- After changing Mixin targets, first use static inspection to verify the target class, method name, descriptor, overload, inheritance behavior, and refmap expectations. Once that review is complete, run `./gradlew clean build` and, when runtime verification is necessary, run `./gradlew runClient` once; confirm the log reports `Mixing <MixinClass> from enigmatic_liberator.mixins.json into <TargetClass>` and contains no `InvalidInjectionException` or `MixinApplyError`.
+- Test environments and real game environments can expose different class names, mappings, method descriptors, overload resolution, dependency versions, and transformed bytecode. Do not treat a successful ForgeGradle test run as proof that a production JAR will load; inspect both development and production-facing mappings and signatures when a Mixin is involved.
+- After changing Mixin targets, first use static inspection to verify the target class, method name, descriptor, overload, inheritance behavior, development/production mapping behavior, and refmap expectations. Once that review is complete, run `./gradlew clean build` and, when runtime verification is necessary, run `./gradlew runClient` once; confirm the log reports `Mixing <MixinClass> from enigmatic_liberator.mixins.json into <TargetClass>` and contains no `InvalidInjectionException` or `MixinApplyError`.
 
 ### Verification Discipline
 
 - Static verification comes first: inspect relevant source code, dependency bytecode, method descriptors, overloads, inheritance, configuration registration, network synchronization, and Mixin registration before launching Minecraft.
+- Always account for differences between the ForgeGradle test environment and the real game environment, including mappings, remapped names, method descriptors, overloads, dependency versions, and class transformations.
 - Perform only one necessary runtime verification after static verification is complete. Do not repeatedly start the client for exploratory debugging when the target and injection behavior can be established statically.
 - If runtime verification fails, fix the identified issue through static analysis before starting another runtime verification.
 
