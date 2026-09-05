@@ -22,8 +22,11 @@ public abstract class MixinPlayer {
         rerollAmuletOnSneakDrop(stack);
     }
 
-    @Inject(method = "m_7197_", at = @At("HEAD"), remap = false, require = 0)
-    private void rerollAmuletOnSneakDropSrg(ItemStack stack, boolean randomThrow,
+    @Inject(
+        method = "m_7197_(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;",
+        at = @At("HEAD"), remap = false, require = 0
+    )
+    private void rerollAmuletOnSneakDropSrg(ItemStack stack, boolean randomThrow, boolean retainOwnership,
                                             CallbackInfoReturnable<ItemEntity> cir) {
         rerollAmuletOnSneakDrop(stack);
     }
