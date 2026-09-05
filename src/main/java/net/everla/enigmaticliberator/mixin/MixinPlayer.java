@@ -23,7 +23,7 @@ public abstract class MixinPlayer {
     }
 
     @Inject(method = "m_7197_", at = @At("HEAD"), remap = false, require = 0)
-    private void rerollAmuletOnSneakDropSrg(ItemStack stack, boolean randomThrow, boolean retainOwnership,
+    private void rerollAmuletOnSneakDropSrg(ItemStack stack, boolean randomThrow,
                                             CallbackInfoReturnable<ItemEntity> cir) {
         rerollAmuletOnSneakDrop(stack);
     }
