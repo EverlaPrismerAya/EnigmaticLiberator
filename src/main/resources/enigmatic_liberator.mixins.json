@@ -17,7 +17,6 @@
     "MixinDesolationRing",
     "MixinEnigmaticAmulet",
     "MixinAscensionAmulet",
-    "MixinPlayer"
   ],
   "client": [
     "MixinCursedRingTooltip",

@@ -14,6 +14,9 @@ import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.item.ItemTossEvent;
+import com.aizistral.enigmaticlegacy.items.EnigmaticAmulet;
+import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import org.slf4j.Logger;
@@ -60,6 +63,21 @@ public class EnigmaticLiberator {
             if (event.getConfig().getType() == ModConfig.Type.COMMON
                     && net.minecraftforge.server.ServerLifecycleHooks.getCurrentServer() != null) {
                 net.everla.enigmaticliberator.network.ConfigNetwork.syncAll();
+            }
+        }
+
+        @SubscribeEvent
+        public static void onItemToss(ItemTossEvent event) {
+            if (!ExtraConfig.AMULET_REROLL_ON_SNEAK_DROP.get()) {
+                return;
+            }
+
+            net.minecraft.world.entity.player.Player player = event.getPlayer();
+            net.minecraft.world.item.ItemStack stack = event.getEntity().getItem();
+            if (!player.level().isClientSide
+                    && player.isCrouching()
+                    && stack.is(EnigmaticItems.ENIGMATIC_AMULET)) {
+                ((EnigmaticAmulet) EnigmaticItems.ENIGMATIC_AMULET).setRandomColor(stack);
             }
         }
     }
