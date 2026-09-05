@@ -13,10 +13,22 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = Player.class)
 public abstract class MixinPlayer {
-    @Inject(method = "drop(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;",
-        at = @At("HEAD"), remap = false)
-    private void rerollAmuletOnSneakDrop(ItemStack stack, boolean randomThrow, boolean retainOwnership,
-                                         CallbackInfoReturnable<ItemEntity> cir) {
+    @Inject(
+        method = "drop(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;",
+        at = @At("HEAD"), remap = false, require = 0
+    )
+    private void rerollAmuletOnSneakDropOfficial(ItemStack stack, boolean randomThrow, boolean retainOwnership,
+                                                 CallbackInfoReturnable<ItemEntity> cir) {
+        rerollAmuletOnSneakDrop(stack);
+    }
+
+    @Inject(method = "m_7197_", at = @At("HEAD"), remap = false, require = 0)
+    private void rerollAmuletOnSneakDropSrg(ItemStack stack, boolean randomThrow, boolean retainOwnership,
+                                            CallbackInfoReturnable<ItemEntity> cir) {
+        rerollAmuletOnSneakDrop(stack);
+    }
+
+    private void rerollAmuletOnSneakDrop(ItemStack stack) {
         Player player = (Player) (Object) this;
         if (ExtraConfig.AMULET_REROLL_ON_SNEAK_DROP.get()
                 && !player.level().isClientSide
