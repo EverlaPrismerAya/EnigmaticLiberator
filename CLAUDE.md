@@ -130,6 +130,13 @@ net.everla.enigmaticliberator/
 - The final mod JAR must contain `enigmatic_liberator.mixins.json` and `enigmatic_liberator.refmap.json`, and its Manifest must contain `MixinConfigs: enigmatic_liberator.mixins.json`. The `jar` task explicitly adds this Manifest entry because its generated Manifest overrides `src/main/resources/META-INF/MANIFEST.MF`.
 - After changing Mixin targets, run `./gradlew clean build` and `./gradlew runClient`; confirm the log reports `Mixing <MixinClass> from enigmatic_liberator.mixins.json into <TargetClass>` and contains no `InvalidInjectionException` or `MixinApplyError`.
 
+### Starter Ring Settings
+
+- Enigmatic Legacy implements `UltraHardcore` and `AutoEquip` in `EnigmaticEventHandler`, not in `CursedRing` itself.
+- `grantStarterGear(ServerPlayer)` reads `CursedRing.ultraHardcore` when granting the first Cursed Ring: false puts it in the inventory, true attempts to force-equip it.
+- `onPlayerTick(LivingTickEvent)` scans the player's inventory and reads `CursedRing.autoEquip`; when true, a non-creative/non-spectator player holding a Cursed Ring without one already equipped is passed to `SuperpositionHandler.tryForceEquip`.
+- `MixinEnigmaticEventHandlerConfig` redirects only these two original `BooleanParameter.getValue()` calls to `ExtraConfig.ULTRA_HARDCORE` and `ExtraConfig.AUTO_EQUIP`, preserving the original equipment and fallback behavior.
+
 ### Testing
 
 Run the client and create a test world:
