@@ -1,6 +1,7 @@
 {
   "tooltip.enigmatic_liberator.worthy_ones_only2": "§5你必须在自来到世界以来§6%1$s§5的时间",
   "tooltip.enigmatic_liberator.cursed_ring.header.curses": "§d七个诅咒将会降临到佩戴者身上：",
+  "tooltip.enigmatic_liberator.cursed_ring.concealed": "§7七咒之戒的能力在装备前不可见",
   "tooltip.enigmatic_liberator.cursed_ring.header.curses.disabled": "§d七个诅咒将会降临到佩戴者身上，但其中§6%s§d重失去效力：",
   "tooltip.enigmatic_liberator.cursed_ring.header.blessings": "§d而那些坚韧顽强之人，将会被给予七个祝福：",
   "tooltip.enigmatic_liberator.cursed_ring.header.blessings.disabled": "§d而那些坚韧顽强之人，将会被给予七个祝福，但其中§6%s§d重失去效力：",
@@ -53,6 +54,8 @@
   "tooltip.enigmatic_liberator.cursed_ring.binding.eternal2": "§4这枚戒指将永远陪伴着你。",
   "tooltip.enigmatic_liberator.cursed_ring.binding.eternal2_creative": "§6需要神的能力才能取下它。",
   "tooltip.enigmatic_liberator.cursed_ring.binding.removable": "§5可以在生存模式下移除。",
+
+  "tooltip.enigmatic_liberator.enigmaticAmuletModifierMAGENTA": "§6+25% §d攻击距离",
 
   "tooltip.enigmatic_liberator.cursed_ring.hold_shift": "§d按住 §6Shift§d 查看详情"
 }

@@ -10,9 +10,11 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 /**
@@ -21,6 +23,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  */
 @Mixin(value = EnigmaticEventHandler.class, remap = false, priority = 1001)
 public abstract class MixinEnigmaticEventHandler {
+
+    @Redirect(
+        method = "onLivingDrops",
+        at = @At(
+            value = "INVOKE",
+            target = "Lcom/aizistral/enigmaticlegacy/handlers/EnigmaticEventHandler;addDropWithChance(Lnet/minecraftforge/event/entity/living/LivingDropsEvent;Lnet/minecraft/world/item/ItemStack;I)V"
+        ),
+        remap = false
+    )
+    private void applySpecialDropMultiplier(EnigmaticEventHandler handler, LivingDropsEvent event,
+                                            net.minecraft.world.item.ItemStack stack, int chance) {
+        if (!BlessingConfig.SPECIAL_DROPS_ENABLED.get()) {
+            return;
+        }
+
+        int adjustedChance = (int) Math.round(chance * BlessingConfig.SPECIAL_DROPS_MULTIPLIER.get());
+        if (adjustedChance > 0 && Math.random() * 100.0 < Math.min(100, adjustedChance)) {
+            handler.addDrop(event, stack);
+        }
+    }
 
     /**
      * CURSE 1: Pain Amplification
@@ -109,13 +131,14 @@ public abstract class MixinEnigmaticEventHandler {
     private void adjustEternalFlames(net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent event, CallbackInfo ci) {
         if (!(event.getEntity() instanceof Player player)) return;
 
-        if (!CurseConfig.FIFTH_CURSE_ENABLED.get()) {
-            if (!SuperpositionHandler.isTheCursedOne(player)) return;
+        if (!SuperpositionHandler.isTheCursedOne(player)) return;
 
-            // Cancel the fire extension by reducing fire ticks
-            if (player.getRemainingFireTicks() > 0) {
-                player.setRemainingFireTicks(player.getRemainingFireTicks() - 2);
-            }
+        if (player.getRemainingFireTicks() > 0) {
+            int configuredIncrease = CurseConfig.FIFTH_CURSE_ENABLED.get()
+                    ? CurseConfig.FIFTH_CURSE_FIRE_TICK_INCREASE.get()
+                    : 0;
+            player.setRemainingFireTicks(Math.max(0,
+                    player.getRemainingFireTicks() - 2 + configuredIncrease));
         }
     }
 

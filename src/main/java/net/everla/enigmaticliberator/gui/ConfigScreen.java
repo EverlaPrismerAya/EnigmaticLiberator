@@ -299,62 +299,66 @@ public class ConfigScreen extends Screen {
 
         switch (currentCategory) {
             case CURSES:
-                entries.add(new ConfigEntry("First Curse (Pain)", CurseConfig.FIRST_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The First Curse amplifies all damage received", null));
+                entries.add(new ConfigEntry("§eFirst Curse (Pain)", CurseConfig.FIRST_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The First Curse amplifies all damage received", null));
                 entries.add(new ConfigEntry("  Damage Multiplier", CurseConfig.FIRST_CURSE_DAMAGE_MULTIPLIER, CurseConfig.SPEC, ConfigEntry.Type.DOUBLE, 2.0, "Multiplier for incoming damage", "Range: 0.1 - 10.0"));
 
-                entries.add(new ConfigEntry("Second Curse (Hostility)", CurseConfig.SECOND_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The Second Curse causes neutral mobs to become hostile", null));
+                entries.add(new ConfigEntry("§eSecond Curse (Hostility)", CurseConfig.SECOND_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The Second Curse causes neutral mobs to become hostile", null));
                 entries.add(new ConfigEntry("  Anger Range", CurseConfig.SECOND_CURSE_ANGER_RANGE, CurseConfig.SPEC, ConfigEntry.Type.DOUBLE, 24.0, "Range in which neutral creatures are angered", "Range: 4.0 - 128.0"));
                 entries.add(new ConfigEntry("  XRay Range", CurseConfig.SECOND_CURSE_XRAY_RANGE, CurseConfig.SPEC, ConfigEntry.Type.DOUBLE, 4.0, "Range in which neutral creatures can see through walls", "Range: 0.0 - 64.0"));
                 entries.add(new ConfigEntry("  Enderman Range", CurseConfig.SECOND_CURSE_ENDERMAN_RANGE, CurseConfig.SPEC, ConfigEntry.Type.DOUBLE, 32.0, "Range for Enderman random teleportation", "Range: 8.0 - 128.0"));
                 entries.add(new ConfigEntry("  Enderman Frequency", CurseConfig.SECOND_CURSE_ENDERMAN_FREQUENCY, CurseConfig.SPEC, ConfigEntry.Type.DOUBLE, 1.0, "Frequency of Enderman teleportation attempts", "Range: 0.01 - 10.0"));
                 entries.add(new ConfigEntry("  Save The Bees", CurseConfig.SECOND_CURSE_SAVE_BEES, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "If true, bees will not be affected by the Second Curse", null));
 
-                entries.add(new ConfigEntry("Third Curse (Armor)", CurseConfig.THIRD_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The Third Curse reduces armor effectiveness", null));
+                entries.add(new ConfigEntry("§eThird Curse (Armor)", CurseConfig.THIRD_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The Third Curse reduces armor effectiveness", null));
                 entries.add(new ConfigEntry("  Armor Reduction", CurseConfig.THIRD_CURSE_ARMOR_REDUCTION, CurseConfig.SPEC, ConfigEntry.Type.DOUBLE, 0.3, "Percentage of armor effectiveness reduced", "Range: 0.0 - 1.0"));
 
-                entries.add(new ConfigEntry("Fourth Curse (Damage)", CurseConfig.FOURTH_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The Fourth Curse reduces damage dealt to enemies", null));
+                entries.add(new ConfigEntry("§eFourth Curse (Damage)", CurseConfig.FOURTH_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The Fourth Curse reduces damage dealt to enemies", null));
                 entries.add(new ConfigEntry("  Damage Reduction", CurseConfig.FOURTH_CURSE_DAMAGE_REDUCTION, CurseConfig.SPEC, ConfigEntry.Type.DOUBLE, 0.5, "Percentage of damage reduced", "Range: 0.0 - 1.0"));
 
-                entries.add(new ConfigEntry("Fifth Curse (Fire)", CurseConfig.FIFTH_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The Fifth Curse makes you more vulnerable to fire", null));
+                entries.add(new ConfigEntry("§eFifth Curse (Fire)", CurseConfig.FIFTH_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The Fifth Curse makes you more vulnerable to fire", null));
                 entries.add(new ConfigEntry("  Fire Tick Increase", CurseConfig.FIFTH_CURSE_FIRE_TICK_INCREASE, CurseConfig.SPEC, ConfigEntry.Type.INTEGER, 2, "Additional fire ticks when set on fire", "Range: 0 - 100"));
 
-                entries.add(new ConfigEntry("Sixth Curse (Soul)", CurseConfig.SIXTH_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The Sixth Curse causes soul loss and max health reduction", null));
+                entries.add(new ConfigEntry("§eSixth Curse (Soul)", CurseConfig.SIXTH_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The Sixth Curse causes soul loss and max health reduction", null));
                 entries.add(new ConfigEntry("  Soul Drop Chance", CurseConfig.SIXTH_CURSE_SOUL_DROP_CHANCE, CurseConfig.SPEC, ConfigEntry.Type.DOUBLE, 1.0, "Chance to lose a soul crystal on death", "Range: 0.0 - 1.0"));
                 entries.add(new ConfigEntry("  Max Health Loss", CurseConfig.SIXTH_CURSE_MAX_HEALTH_LOSS, CurseConfig.SPEC, ConfigEntry.Type.DOUBLE, 2.0, "Max health lost per soul crystal", "Range: 0.0 - 20.0"));
 
-                entries.add(new ConfigEntry("Seventh Curse (Insomnia)", CurseConfig.SEVENTH_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The Seventh Curse prevents sleep and attracts phantoms", null));
+                entries.add(new ConfigEntry("§eSeventh Curse (Insomnia)", CurseConfig.SEVENTH_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "The Seventh Curse prevents sleep and attracts phantoms", null));
                 entries.add(new ConfigEntry("  Prevent Sleep", CurseConfig.SEVENTH_CURSE_PREVENT_SLEEP, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Prevents player from sleeping in beds", null));
 
-                entries.add(new ConfigEntry("Knockback Curse", CurseConfig.KNOCKBACK_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Extra curse: Increases knockback received", null));
+                entries.add(new ConfigEntry("§eKnockback Curse", CurseConfig.KNOCKBACK_CURSE_ENABLED, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Extra curse: Increases knockback received", null));
                 entries.add(new ConfigEntry("  Knockback Multiplier", CurseConfig.KNOCKBACK_CURSE_MULTIPLIER, CurseConfig.SPEC, ConfigEntry.Type.DOUBLE, 2.0, "Multiplier for knockback received", "Range: 0.1 - 10.0"));
 
-                entries.add(new ConfigEntry("Disable Eternal Binding", CurseConfig.DISABLE_ETERNAL_BINDING, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Allow ring removal in survival mode", null));
+                entries.add(new ConfigEntry("§eDisable Eternal Binding", CurseConfig.DISABLE_ETERNAL_BINDING, CurseConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Allow ring removal in survival mode", null));
                 break;
 
             case BLESSINGS:
-                entries.add(new ConfigEntry("Looting Blessing", BlessingConfig.LOOTING_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Grants Looting enchantment bonus", null));
+                entries.add(new ConfigEntry("§eLooting Blessing", BlessingConfig.LOOTING_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Grants Looting enchantment bonus", null));
                 entries.add(new ConfigEntry("  Looting Levels", BlessingConfig.LOOTING_BONUS_LEVELS, BlessingConfig.SPEC, ConfigEntry.Type.INTEGER, 1, "Additional Looting enchantment levels", "Range: 0 - 10"));
 
-                entries.add(new ConfigEntry("Fortune Blessing", BlessingConfig.FORTUNE_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Grants Fortune enchantment bonus", null));
+                entries.add(new ConfigEntry("§eFortune Blessing", BlessingConfig.FORTUNE_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Grants Fortune enchantment bonus", null));
                 entries.add(new ConfigEntry("  Fortune Levels", BlessingConfig.FORTUNE_BONUS_LEVELS, BlessingConfig.SPEC, ConfigEntry.Type.INTEGER, 1, "Additional Fortune enchantment levels", "Range: 0 - 10"));
 
-                entries.add(new ConfigEntry("Experience Blessing", BlessingConfig.EXPERIENCE_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Multiplies experience gained", null));
+                entries.add(new ConfigEntry("§eExperience Blessing", BlessingConfig.EXPERIENCE_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Multiplies experience gained", null));
                 entries.add(new ConfigEntry("  Experience Multiplier", BlessingConfig.EXPERIENCE_MULTIPLIER, BlessingConfig.SPEC, ConfigEntry.Type.DOUBLE, 4.0, "Multiplier for experience drops", "Range: 1.0 - 20.0"));
 
-                entries.add(new ConfigEntry("Enchanting Blessing", BlessingConfig.ENCHANTING_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Increases enchantment table power", null));
+                entries.add(new ConfigEntry("§eEnchanting Blessing", BlessingConfig.ENCHANTING_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Increases enchantment table power", null));
                 entries.add(new ConfigEntry("  Enchanting Power", BlessingConfig.ENCHANTING_BONUS_POWER, BlessingConfig.SPEC, ConfigEntry.Type.INTEGER, 10, "Additional enchantment power bonus", "Range: 0 - 50"));
 
-                entries.add(new ConfigEntry("Special Drops", BlessingConfig.SPECIAL_DROPS_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables special drops from vanilla mobs", null));
-                entries.add(new ConfigEntry("Ender Ring", BlessingConfig.ENDER_RING_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Grants access to Ender Ring abilities", null));
-                entries.add(new ConfigEntry("Unique Relics", BlessingConfig.UNIQUE_RELICS_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables crafting and use of all unique abyssal relics", null));
+                entries.add(new ConfigEntry("§eSpecial Drops", BlessingConfig.SPECIAL_DROPS_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables special drops from vanilla mobs", null));
+                entries.add(new ConfigEntry("  Drop Chance Multiplier", BlessingConfig.SPECIAL_DROPS_MULTIPLIER, BlessingConfig.SPEC, ConfigEntry.Type.DOUBLE, 1.0, "Multiplier for special mob drop chances", "Range: 0.0 - 10.0"));
+                entries.add(new ConfigEntry("§eEnder Ring", BlessingConfig.ENDER_RING_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Grants access to Ender Ring abilities", null));
+                entries.add(new ConfigEntry("§eUnique Relics", BlessingConfig.UNIQUE_RELICS_ENABLED, BlessingConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Enables crafting and use of all unique abyssal relics", null));
                 break;
 
             case EXTRA:
                 entries.add(new ConfigEntry("Ultra Hardcore Mode", ExtraConfig.ULTRA_HARDCORE, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Ring equips immediately when entering new world", null));
                 entries.add(new ConfigEntry("Auto Equip", ExtraConfig.AUTO_EQUIP, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Ring equips immediately when entering inventory", null));
+                entries.add(new ConfigEntry("Cursed Ring Extra Slot", ExtraConfig.CURSED_RING_EXTRA_SLOT, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Wearing the Cursed Ring grants one additional ring slot", null));
                 entries.add(new ConfigEntry("Enable Lore", ExtraConfig.ENABLE_LORE, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Display lore text on the ring tooltip", null));
                 entries.add(new ConfigEntry("Conceal Abilities", ExtraConfig.CONCEAL_ABILITIES, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Hide tooltip until ring is equipped", null));
                 entries.add(new ConfigEntry("Super Cursed Time", ExtraConfig.SUPER_CURSED_TIME, ExtraConfig.SPEC, ConfigEntry.Type.DOUBLE, 0.995, "Fraction of playtime required for Abyssal Artifacts", "Range: 0.0 - 1.0"));
+                entries.add(new ConfigEntry("Replace Amulet Gravity", ExtraConfig.AMULET_REPLACE_GRAVITY, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Replace -25% gravity with +25% reach on Enigmatic Amulet", null));
+                entries.add(new ConfigEntry("Reroll Amulet on Sneak Drop", ExtraConfig.AMULET_REROLL_ON_SNEAK_DROP, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Reroll the amulet when dropped while sneaking", null));
                 break;
         }
 

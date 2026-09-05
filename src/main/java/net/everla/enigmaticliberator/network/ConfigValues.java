@@ -46,14 +46,18 @@ public final class ConfigValues {
         add(values, "blessing.enchanting.enabled", BlessingConfig.ENCHANTING_ENABLED.get());
         add(values, "blessing.enchanting.power", BlessingConfig.ENCHANTING_BONUS_POWER.get());
         add(values, "blessing.special_drops.enabled", BlessingConfig.SPECIAL_DROPS_ENABLED.get());
+        add(values, "blessing.special_drops.multiplier", BlessingConfig.SPECIAL_DROPS_MULTIPLIER.get());
         add(values, "blessing.ender_ring.enabled", BlessingConfig.ENDER_RING_ENABLED.get());
         add(values, "blessing.unique_relics.enabled", BlessingConfig.UNIQUE_RELICS_ENABLED.get());
 
         add(values, "extra.ultra_hardcore", ExtraConfig.ULTRA_HARDCORE.get());
         add(values, "extra.auto_equip", ExtraConfig.AUTO_EQUIP.get());
+        add(values, "extra.cursed_ring.extra_slot", ExtraConfig.CURSED_RING_EXTRA_SLOT.get());
         add(values, "extra.lore.enabled", ExtraConfig.ENABLE_LORE.get());
         add(values, "extra.tooltip.conceal", ExtraConfig.CONCEAL_ABILITIES.get());
         add(values, "extra.super_cursed.time", ExtraConfig.SUPER_CURSED_TIME.get());
+        add(values, "extra.enigmatic_amulet.replace_gravity", ExtraConfig.AMULET_REPLACE_GRAVITY.get());
+        add(values, "extra.enigmatic_amulet.reroll_on_sneak_drop", ExtraConfig.AMULET_REROLL_ON_SNEAK_DROP.get());
         return values;
     }
 
@@ -99,13 +103,17 @@ public final class ConfigValues {
             case "blessing.enchanting.enabled" -> BlessingConfig.ENCHANTING_ENABLED;
             case "blessing.enchanting.power" -> BlessingConfig.ENCHANTING_BONUS_POWER;
             case "blessing.special_drops.enabled" -> BlessingConfig.SPECIAL_DROPS_ENABLED;
+            case "blessing.special_drops.multiplier" -> BlessingConfig.SPECIAL_DROPS_MULTIPLIER;
             case "blessing.ender_ring.enabled" -> BlessingConfig.ENDER_RING_ENABLED;
             case "blessing.unique_relics.enabled" -> BlessingConfig.UNIQUE_RELICS_ENABLED;
             case "extra.ultra_hardcore" -> ExtraConfig.ULTRA_HARDCORE;
             case "extra.auto_equip" -> ExtraConfig.AUTO_EQUIP;
+            case "extra.cursed_ring.extra_slot" -> ExtraConfig.CURSED_RING_EXTRA_SLOT;
             case "extra.lore.enabled" -> ExtraConfig.ENABLE_LORE;
             case "extra.tooltip.conceal" -> ExtraConfig.CONCEAL_ABILITIES;
             case "extra.super_cursed.time" -> ExtraConfig.SUPER_CURSED_TIME;
+            case "extra.enigmatic_amulet.replace_gravity" -> ExtraConfig.AMULET_REPLACE_GRAVITY;
+            case "extra.enigmatic_amulet.reroll_on_sneak_drop" -> ExtraConfig.AMULET_REROLL_ON_SNEAK_DROP;
             default -> null;
         };
     }
@@ -144,13 +152,17 @@ public final class ConfigValues {
                 case "blessing.enchanting.enabled" -> BlessingConfig.ENCHANTING_ENABLED.set(Boolean.parseBoolean(value));
                 case "blessing.enchanting.power" -> BlessingConfig.ENCHANTING_BONUS_POWER.set(Integer.parseInt(value));
                 case "blessing.special_drops.enabled" -> BlessingConfig.SPECIAL_DROPS_ENABLED.set(Boolean.parseBoolean(value));
+                case "blessing.special_drops.multiplier" -> BlessingConfig.SPECIAL_DROPS_MULTIPLIER.set(Double.parseDouble(value));
                 case "blessing.ender_ring.enabled" -> BlessingConfig.ENDER_RING_ENABLED.set(Boolean.parseBoolean(value));
                 case "blessing.unique_relics.enabled" -> BlessingConfig.UNIQUE_RELICS_ENABLED.set(Boolean.parseBoolean(value));
                 case "extra.ultra_hardcore" -> ExtraConfig.ULTRA_HARDCORE.set(Boolean.parseBoolean(value));
                 case "extra.auto_equip" -> ExtraConfig.AUTO_EQUIP.set(Boolean.parseBoolean(value));
+                case "extra.cursed_ring.extra_slot" -> ExtraConfig.CURSED_RING_EXTRA_SLOT.set(Boolean.parseBoolean(value));
                 case "extra.lore.enabled" -> ExtraConfig.ENABLE_LORE.set(Boolean.parseBoolean(value));
                 case "extra.tooltip.conceal" -> ExtraConfig.CONCEAL_ABILITIES.set(Boolean.parseBoolean(value));
                 case "extra.super_cursed.time" -> ExtraConfig.SUPER_CURSED_TIME.set(Double.parseDouble(value));
+                case "extra.enigmatic_amulet.replace_gravity" -> ExtraConfig.AMULET_REPLACE_GRAVITY.set(Boolean.parseBoolean(value));
+                case "extra.enigmatic_amulet.reroll_on_sneak_drop" -> ExtraConfig.AMULET_REROLL_ON_SNEAK_DROP.set(Boolean.parseBoolean(value));
                 default -> { return false; }
             }
             return true;

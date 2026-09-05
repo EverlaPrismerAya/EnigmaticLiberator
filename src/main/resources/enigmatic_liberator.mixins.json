@@ -8,11 +8,16 @@
   "mixins": [
     "MixinCursedRing",
     "MixinEnigmaticEventHandler",
+    "MixinEnigmaticEventHandlerSoulCurse",
     "MixinEnigmaticEventHandlerConfig",
     "MixinSuperpositionHandler",
     "MixinResultSlot",
+    "MixinSoulCrystal",
     "MixinPacketEnderRingKey",
-    "MixinDesolationRing"
+    "MixinDesolationRing",
+    "MixinEnigmaticAmulet",
+    "MixinAscensionAmulet",
+    "MixinPlayer"
   ],
   "client": [
     "MixinCursedRingTooltip",

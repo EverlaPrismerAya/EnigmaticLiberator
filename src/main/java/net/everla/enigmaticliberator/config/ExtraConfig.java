@@ -6,18 +6,10 @@ public class ExtraConfig {
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     public static final ForgeConfigSpec SPEC;
 
-    // Neutral Hostility Settings
-    public static final ForgeConfigSpec.DoubleValue NEUTRAL_ANGER_RANGE;
-    public static final ForgeConfigSpec.DoubleValue NEUTRAL_XRAY_RANGE;
-
-    // Enderman Teleport Settings
-    public static final ForgeConfigSpec.DoubleValue ENDERMEN_RANDOMPORT_RANGE;
-    public static final ForgeConfigSpec.DoubleValue ENDERMEN_RANDOMPORT_FREQUENCY;
-
     // Special Mechanics
-    public static final ForgeConfigSpec.BooleanValue SAVE_THE_BEES;
     public static final ForgeConfigSpec.BooleanValue ULTRA_HARDCORE;
     public static final ForgeConfigSpec.BooleanValue AUTO_EQUIP;
+    public static final ForgeConfigSpec.BooleanValue CURSED_RING_EXTRA_SLOT;
 
     // Tooltip Settings
     public static final ForgeConfigSpec.BooleanValue ENABLE_LORE;
@@ -26,34 +18,12 @@ public class ExtraConfig {
     // Super Cursed Time (for Abyssal Artifacts)
     public static final ForgeConfigSpec.DoubleValue SUPER_CURSED_TIME;
 
+    // Enigmatic Amulet settings
+    public static final ForgeConfigSpec.BooleanValue AMULET_REPLACE_GRAVITY;
+    public static final ForgeConfigSpec.BooleanValue AMULET_REROLL_ON_SNEAK_DROP;
+
     static {
         BUILDER.comment("Extra Cursed Ring Configuration").push("extra");
-
-        // Neutral Hostility
-        BUILDER.comment("Settings for the Second Curse - Neutral Hostility").push("neutral_hostility");
-        NEUTRAL_ANGER_RANGE = BUILDER
-            .comment("Range in which neutral creatures are angered against bearers of the ring.")
-            .defineInRange("neutral_anger_range", 24.0, 4.0, 128.0);
-        NEUTRAL_XRAY_RANGE = BUILDER
-            .comment("Range in which neutral creatures can see and target bearers of the ring even if they can't directly see them.")
-            .defineInRange("neutral_xray_range", 4.0, 0.0, 64.0);
-        SAVE_THE_BEES = BUILDER
-            .comment("If true, bees will never be affected by the Second Curse of Ring of the Seven Curses.")
-            .comment("This category exists solely because of Jusey1z who really wanted to protect his bees.")
-            .define("save_the_bees", false);
-        BUILDER.pop();
-
-        // Enderman Teleportation
-        BUILDER.comment("Settings for Enderman random teleportation to ring bearers").push("enderman_teleport");
-        ENDERMEN_RANDOMPORT_RANGE = BUILDER
-            .comment("Range in which Endermen can try to randomly teleport to bearers of the ring.")
-            .defineInRange("endermen_randomport_range", 32.0, 8.0, 128.0);
-        ENDERMEN_RANDOMPORT_FREQUENCY = BUILDER
-            .comment("Allows to adjust how frequently Endermen will try to randomly teleport to player bearing the ring,")
-            .comment("even if they can't see the player and are not angered yet.")
-            .comment("Lower value = less probability of this happening.")
-            .defineInRange("endermen_randomport_frequency", 1.0, 0.01, 10.0);
-        BUILDER.pop();
 
         // Ring Behavior
         BUILDER.comment("Ring behavior settings").push("ring_behavior");
@@ -66,6 +36,9 @@ public class ExtraConfig {
             .comment("when it enters their inventory. This is different from ultra hardcore option as the way")
             .comment("through which ring ends up in player's inventory does not matter.")
             .define("auto_equip", false);
+        CURSED_RING_EXTRA_SLOT = BUILDER
+            .comment("If true, wearing Ring of the Seven Curses grants one additional ring slot.")
+            .define("cursed_ring_extra_slot", true);
         BUILDER.pop();
 
         // Tooltip Settings
@@ -89,6 +62,16 @@ public class ExtraConfig {
             .comment("0.995 means player needs to bear the curse for 99.5% of their playtime.")
             .comment("Set to 0.0 to allow immediate use, 1.0 to require 100% uptime (impossible).")
             .defineInRange("super_cursed_time", 0.995, 0.0, 1.0);
+        BUILDER.pop();
+
+        BUILDER.comment("Enigmatic Amulet behavior").push("enigmatic_amulet");
+        AMULET_REPLACE_GRAVITY = BUILDER
+            .comment("Replace the amulet's -25% gravity modifier with a +25% reach modifier.")
+            .define("replace_gravity_with_reach", false);
+        AMULET_REROLL_ON_SNEAK_DROP = BUILDER
+            .comment("Reroll an Enigmatic Amulet when a sneaking player drops it.")
+            .comment("Other drop paths, including death drops, are not affected.")
+            .define("reroll_on_sneak_drop", false);
         BUILDER.pop();
 
         BUILDER.pop();

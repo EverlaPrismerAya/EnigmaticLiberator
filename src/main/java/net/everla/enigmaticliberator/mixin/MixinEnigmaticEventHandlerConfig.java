@@ -3,6 +3,7 @@ package net.everla.enigmaticliberator.mixin;
 import com.aizistral.enigmaticlegacy.handlers.EnigmaticEventHandler;
 import com.aizistral.omniconfig.wrappers.Omniconfig;
 import net.everla.enigmaticliberator.config.ExtraConfig;
+import net.everla.enigmaticliberator.config.CurseConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;

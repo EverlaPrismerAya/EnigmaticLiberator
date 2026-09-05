@@ -1,6 +1,7 @@
 {
   "tooltip.enigmatic_liberator.worthy_ones_only2": "§5is immense - you have to spend §6%1$s§5 of your",
   "tooltip.enigmatic_liberator.cursed_ring.header.curses": "§dSeven curses will befall whoever bears it:",
+  "tooltip.enigmatic_liberator.cursed_ring.concealed": "§7The ring's abilities are concealed until equipped.",
   "tooltip.enigmatic_liberator.cursed_ring.header.curses.disabled": "§dSeven curses will befall whoever bears it, but §6%s§d of them are ineffective:",
   "tooltip.enigmatic_liberator.cursed_ring.header.blessings": "§dSeven blessings will reward those who withstand:",
   "tooltip.enigmatic_liberator.cursed_ring.header.blessings.disabled": "§dSeven blessings will reward those who withstand, but §6%s§d of them are ineffective:",
@@ -53,6 +54,8 @@
   "tooltip.enigmatic_liberator.cursed_ring.binding.eternal2": "§4This ring will persist with you forever.",
   "tooltip.enigmatic_liberator.cursed_ring.binding.eternal2_creative": "§6With the power of god, you can unequip it.",
   "tooltip.enigmatic_liberator.cursed_ring.binding.removable": "§5Can be removed in survival.",
+
+  "tooltip.enigmatic_liberator.enigmaticAmuletModifierMAGENTA": "§6+25% §dEntity Reach",
 
   "tooltip.enigmatic_liberator.cursed_ring.hold_shift": "§dHold§6 Shift§5 for details"
 }

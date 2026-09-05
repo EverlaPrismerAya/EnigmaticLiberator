@@ -1,6 +1,7 @@
 package net.everla.enigmaticliberator.mixin;
 
 import com.aizistral.enigmaticlegacy.items.CursedRing;
+import com.aizistral.omniconfig.wrappers.Omniconfig;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import net.everla.enigmaticliberator.config.BlessingConfig;
@@ -16,10 +17,12 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 
 import java.util.UUID;
 
@@ -29,6 +32,25 @@ import java.util.UUID;
  */
 @Mixin(value = CursedRing.class, remap = false)
 public abstract class MixinCursedRing {
+    private static final UUID EXTRA_RING_SLOT = UUID.fromString("b6dd4c58-08e9-4fe2-8f29-2c1b3cc7d1a6");
+
+    @Inject(method = "onEquip", at = @At("TAIL"), remap = false)
+    private void addExtraRingSlot(SlotContext context, ItemStack stack, ItemStack previousStack, CallbackInfo ci) {
+        if (!ExtraConfig.CURSED_RING_EXTRA_SLOT.get()
+                || context.entity().level().isClientSide) {
+            return;
+        }
+
+        CuriosApi.getCuriosInventory(context.entity()).ifPresent(handler ->
+            handler.addTransientSlotModifier("ring", EXTRA_RING_SLOT, "enigmatic_liberator:cursed_ring_extra_slot", 1,
+                AttributeModifier.Operation.ADDITION));
+    }
+
+    @Inject(method = "onUnequip", at = @At("TAIL"), remap = false)
+    private void removeExtraRingSlot(SlotContext context, ItemStack newStack, ItemStack stack, CallbackInfo ci) {
+        CuriosApi.getCuriosInventory(context.entity()).ifPresent(handler ->
+            handler.removeSlotModifier("ring", EXTRA_RING_SLOT));
+    }
 
     /**
      * BLESSING 1: Looting Level
@@ -139,20 +161,41 @@ public abstract class MixinCursedRing {
         }
     }
 
-    /**
-     * CURSE 2: Modify neutral anger range if curse is enabled
-     */
-    @ModifyVariable(
+    @Redirect(
         method = "curioTick",
-        at = @At(value = "STORE", ordinal = 0),
-        ordinal = 0,
-        name = "genericMobs",
+        at = @At(
+            value = "INVOKE",
+            target = "Lcom/aizistral/omniconfig/wrappers/Omniconfig$DoubleParameter;getValue()D"
+        ),
         remap = false
     )
-    private double modifyNeutralAngerRange(double original) {
-        if (CurseConfig.SECOND_CURSE_ENABLED.get()) {
+    private double useConfiguredHostilityValue(Omniconfig.DoubleParameter parameter) {
+        if (parameter == CursedRing.neutralAngerRange) {
             return CurseConfig.SECOND_CURSE_ANGER_RANGE.get();
         }
-        return original;
+        if (parameter == CursedRing.neutralXRayRange) {
+            return CurseConfig.SECOND_CURSE_XRAY_RANGE.get();
+        }
+        if (parameter == CursedRing.endermenRandomportRange) {
+            return CurseConfig.SECOND_CURSE_ENDERMAN_RANGE.get();
+        }
+        if (parameter == CursedRing.endermenRandomportFrequency) {
+            return CurseConfig.SECOND_CURSE_ENDERMAN_FREQUENCY.get();
+        }
+        return parameter.getValue();
+    }
+
+    @Redirect(
+        method = "curioTick",
+        at = @At(
+            value = "INVOKE",
+            target = "Lcom/aizistral/omniconfig/wrappers/Omniconfig$BooleanParameter;getValue()Z"
+        ),
+        remap = false
+    )
+    private boolean useConfiguredBeeProtection(Omniconfig.BooleanParameter parameter) {
+        return parameter == CursedRing.saveTheBees
+                ? CurseConfig.SECOND_CURSE_SAVE_BEES.get()
+                : parameter.getValue();
     }
 }

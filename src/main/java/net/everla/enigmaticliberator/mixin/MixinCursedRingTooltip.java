@@ -1,9 +1,12 @@
 package net.everla.enigmaticliberator.mixin;
 
 import com.aizistral.enigmaticlegacy.helpers.ItemLoreHelper;
+import com.aizistral.enigmaticlegacy.handlers.SuperpositionHandler;
 import com.aizistral.enigmaticlegacy.items.CursedRing;
+import com.aizistral.enigmaticlegacy.registries.EnigmaticItems;
 import net.everla.enigmaticliberator.config.BlessingConfig;
 import net.everla.enigmaticliberator.config.CurseConfig;
+import net.everla.enigmaticliberator.config.ExtraConfig;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
@@ -36,6 +39,14 @@ public abstract class MixinCursedRingTooltip {
 
         // Add void line
         ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
+
+        Minecraft minecraft = Minecraft.getInstance();
+        if (ExtraConfig.CONCEAL_ABILITIES.get()
+                && minecraft.player != null
+                && !SuperpositionHandler.hasCurio(minecraft.player, EnigmaticItems.CURSED_RING)) {
+            ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.concealed");
+            return;
+        }
 
         if (Screen.hasShiftDown()) {
             // Count enabled and disabled curses/blessings
@@ -212,7 +223,7 @@ public abstract class MixinCursedRingTooltip {
                                 BlessingConfig.ENDER_RING_ENABLED.get() ||
                                 BlessingConfig.UNIQUE_RELICS_ENABLED.get();
 
-            if (anyEnabled) {
+            if (anyEnabled && ExtraConfig.ENABLE_LORE.get()) {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.lore1");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.lore2");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.lore3");
@@ -221,7 +232,7 @@ public abstract class MixinCursedRingTooltip {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.lore6");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.lore7");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");
-            } else {
+            } else if (!anyEnabled) {
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.disabled.lore1");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmatic_liberator.cursed_ring.disabled.lore2");
                 ItemLoreHelper.addLocalizedString(list, "tooltip.enigmaticlegacy.void");

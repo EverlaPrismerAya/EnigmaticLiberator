@@ -113,7 +113,7 @@ net.everla.enigmaticliberator/
 2. Identify the target method in `com.aizistral.enigmaticlegacy.items.CursedRing` or event handlers
 3. Create mixin injection in the appropriate mixin class
 4. Use config values to conditionally modify behavior
-5. Test with `./gradlew runClient` to verify behavior in-game
+5. First complete static verification of the source, target bytecode signatures, configuration wiring, and injection points; only then perform one necessary runtime verification with `./gradlew runClient`
 
 ### Debugging Mixins
 
@@ -128,7 +128,13 @@ net.everla.enigmaticliberator/
 - Mixin targets that use `remap = false` must use the actual SRG method name. For Minecraft 1.20.1 item tooltips, use `m_7373_`, not `appendHoverText`.
 - A target such as `appendHoverText` with `remap = false` can appear correct in source or IDE inspection but will fail in a production Forge environment with `InvalidInjectionException` because the target method is actually `m_7373_`.
 - The final mod JAR must contain `enigmatic_liberator.mixins.json` and `enigmatic_liberator.refmap.json`, and its Manifest must contain `MixinConfigs: enigmatic_liberator.mixins.json`. The `jar` task explicitly adds this Manifest entry because its generated Manifest overrides `src/main/resources/META-INF/MANIFEST.MF`.
-- After changing Mixin targets, run `./gradlew clean build` and `./gradlew runClient`; confirm the log reports `Mixing <MixinClass> from enigmatic_liberator.mixins.json into <TargetClass>` and contains no `InvalidInjectionException` or `MixinApplyError`.
+- After changing Mixin targets, first use static inspection to verify the target class, method name, descriptor, overload, inheritance behavior, and refmap expectations. Once that review is complete, run `./gradlew clean build` and, when runtime verification is necessary, run `./gradlew runClient` once; confirm the log reports `Mixing <MixinClass> from enigmatic_liberator.mixins.json into <TargetClass>` and contains no `InvalidInjectionException` or `MixinApplyError`.
+
+### Verification Discipline
+
+- Static verification comes first: inspect relevant source code, dependency bytecode, method descriptors, overloads, inheritance, configuration registration, network synchronization, and Mixin registration before launching Minecraft.
+- Perform only one necessary runtime verification after static verification is complete. Do not repeatedly start the client for exploratory debugging when the target and injection behavior can be established statically.
+- If runtime verification fails, fix the identified issue through static analysis before starting another runtime verification.
 
 ### Starter Ring Settings
 
