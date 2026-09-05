@@ -351,14 +351,14 @@ public class ConfigScreen extends Screen {
                 break;
 
             case EXTRA:
-                entries.add(new ConfigEntry("Ultra Hardcore Mode", ExtraConfig.ULTRA_HARDCORE, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Ring equips immediately when entering new world", null));
-                entries.add(new ConfigEntry("Auto Equip", ExtraConfig.AUTO_EQUIP, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Ring equips immediately when entering inventory", null));
-                entries.add(new ConfigEntry("Cursed Ring Extra Slot", ExtraConfig.CURSED_RING_EXTRA_SLOT, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Wearing the Cursed Ring grants one additional ring slot", null));
-                entries.add(new ConfigEntry("Enable Lore", ExtraConfig.ENABLE_LORE, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Display lore text on the ring tooltip", null));
-                entries.add(new ConfigEntry("Conceal Abilities", ExtraConfig.CONCEAL_ABILITIES, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Hide tooltip until ring is equipped", null));
-                entries.add(new ConfigEntry("Super Cursed Time", ExtraConfig.SUPER_CURSED_TIME, ExtraConfig.SPEC, ConfigEntry.Type.DOUBLE, 0.995, "Fraction of playtime required for Abyssal Artifacts", "Range: 0.0 - 1.0"));
-                entries.add(new ConfigEntry("Replace Amulet Gravity", ExtraConfig.AMULET_REPLACE_GRAVITY, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Replace -25% gravity with +25% reach on Enigmatic Amulet", null));
-                entries.add(new ConfigEntry("Reroll Amulet on Sneak Drop", ExtraConfig.AMULET_REROLL_ON_SNEAK_DROP, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Reroll the amulet when dropped while sneaking", null));
+                entries.add(new ConfigEntry("§cUltra Hardcore Mode", ExtraConfig.ULTRA_HARDCORE, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Ring equips immediately when entering new world", null));
+                entries.add(new ConfigEntry("§cAuto Equip", ExtraConfig.AUTO_EQUIP, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Ring equips immediately when entering inventory", null));
+                entries.add(new ConfigEntry("§aCursed Ring Extra Slot", ExtraConfig.CURSED_RING_EXTRA_SLOT, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Wearing the Cursed Ring grants one additional ring slot", null));
+                entries.add(new ConfigEntry("§eEnable Lore", ExtraConfig.ENABLE_LORE, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, true, "Display lore text on the ring tooltip", null));
+                entries.add(new ConfigEntry("§eConceal Abilities", ExtraConfig.CONCEAL_ABILITIES, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Hide tooltip until ring is equipped", null));
+                entries.add(new ConfigEntry("§eSuper Cursed Time", ExtraConfig.SUPER_CURSED_TIME, ExtraConfig.SPEC, ConfigEntry.Type.DOUBLE, 0.995, "Fraction of playtime required for Abyssal Artifacts", "Range: 0.0 - 1.0"));
+                entries.add(new ConfigEntry("§aReplace Amulet Gravity", ExtraConfig.AMULET_REPLACE_GRAVITY, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Replace -25% gravity with +25% reach on Enigmatic Amulet", null));
+                entries.add(new ConfigEntry("§aReroll Amulet on Sneak Drop", ExtraConfig.AMULET_REROLL_ON_SNEAK_DROP, ExtraConfig.SPEC, ConfigEntry.Type.BOOLEAN, false, "Reroll the amulet when dropped while sneaking", null));
                 break;
         }
 
