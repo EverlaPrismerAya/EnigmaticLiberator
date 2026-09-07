@@ -30,11 +30,25 @@ public abstract class MixinEnigmaticEventHandlerConfig {
             at = @At(
                     value = "INVOKE",
                     target = "Lcom/aizistral/omniconfig/wrappers/Omniconfig$BooleanParameter;getValue()Z",
-                    ordinal = 0
+                    ordinal = 2
             ),
             remap = false
     )
     private boolean useConfiguredAutoEquip(Omniconfig.BooleanParameter ignored) {
         return ExtraConfig.AUTO_EQUIP.get();
+    }
+
+    @Redirect(
+            method = "onPlayerTick",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lcom/aizistral/omniconfig/wrappers/Omniconfig$BooleanParameter;getValue()Z",
+                    ordinal = 0
+            ),
+            remap = false
+    )
+    private boolean useConfiguredInsomnia(Omniconfig.BooleanParameter ignored) {
+        return !CurseConfig.SEVENTH_CURSE_ENABLED.get()
+                || !CurseConfig.SEVENTH_CURSE_PREVENT_SLEEP.get();
     }
 }
